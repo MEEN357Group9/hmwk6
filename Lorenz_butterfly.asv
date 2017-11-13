@@ -1,12 +1,5 @@
 function dydx=Lorenz_butterfly(~,y)
 %{
-This function creates the Lorenz Butterfly. 
-    Inputs:
-        y: The dependent variable, which is a column vector.
-        ~: This is a homogeneous system of equations. It does not depend on x, hence the tilde.
-    Output:
-        dydx: An evaluation of the differential equation dy/dx = f(x, y). This will be a vector with the same length as y.
-%}
 Y1=isnumeric(y);
 Y2=size(y);
 if Y1~=1 || Y2(2)~=3
