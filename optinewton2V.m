@@ -39,7 +39,7 @@ eq2 = subs(equ2,[x,y],[X,Y]);
 eq3 = subs(equ3,[x,y],[X,Y]);
 eq4 = subs(equ4,[x,y],[X,Y]);
 
-H = [eq1, eq2; eq3, eq4]
+H = [eq1, eq2; eq3, eq4];
 
 %% Gradient of f(x,y)
 
@@ -49,7 +49,7 @@ gy = diff(f,y);
 g1 = subs(gx,[x,y],[X,Y]);
 g2 = subs(gy,[x,y],[X,Y]);
 
-G = [g1 ; g2]
+G = [g1 ; g2];
 
 
 
