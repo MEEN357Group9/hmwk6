@@ -1,5 +1,5 @@
 % Task 3 Homework 6
-% Runge-Kutta butcher table elements for Runge-Kutta method
+% Runge-Kutta butcher table elements for Kutta preferred method
 
 field01 = 'b1';
 field02 = 'b2';
