@@ -35,10 +35,10 @@ end
 
 % Runge-Kutta Part
 k1 = f(x0, y0);
-k2 = f(x0 + Kutta.c1*h, y0 + h(Kutta.A11*k1));
-k3 = f(x0 + Kutta.c2*h, y0 + h(Kutta.A21*k1 + Kutta.A22*k2));
-k4 = f(x0 + Kutta.c3*h, y0 + h(Kutta.A31*k1 + Kutta.A32*k2 + Kutta.A33*k3));
+k2 = f(x0 + Kutta.c1*h, y0 + h*(Kutta.A11*k1));
+k3 = f(x0 + Kutta.c2*h, y0 + h*(Kutta.A21*k1 + Kutta.A22*k2));
+k4 = f(x0 + Kutta.c3*h, y0 + h*(Kutta.A31*k1 + Kutta.A32*k2 + Kutta.A33*k3));
 
-y1 = y0 + h(Kutta.b1*k1 + Kutta.b2*k2 + Kutta.b3*k3 + Kutta.b4*k4);
+y1 = y0 + h*(Kutta.b1*k1 + Kutta.b2*k2 + Kutta.b3*k3 + Kutta.b4*k4);
 
 end
