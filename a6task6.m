@@ -11,7 +11,7 @@ yr = zeros(1);
 yb = zeros(1);
 
 
-for i = nr
+for i = 1:nr
     
     
 end
