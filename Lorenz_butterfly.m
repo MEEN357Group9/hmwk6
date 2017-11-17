@@ -9,8 +9,8 @@ This function creates the Lorenz Butterfly.
 %}
 Y1=isnumeric(y);
 Y2=size(y);
-if Y1~=1 || Y2(2)~=3
-    error(' y must be a numeric matrix with 3 columns.')
+if Y2(1)~=3 || Y2(2)~=1
+    error(' y must be a numeric matrix with 1 column and 3 rows.')
 end
 sigma1=10;
 b=8/3; 
