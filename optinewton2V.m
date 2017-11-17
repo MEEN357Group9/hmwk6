@@ -8,57 +8,69 @@ function [ x_opt, y_opt ] = optinewton2V( f,x,y )
 %
 %  RETURN ARGUMENT
 %  x_opt:            optimum value of x for f(x,y)
-%                    optimum value of y for f(x,y)
-%  y_opt:
-%
+%  y_opt:            optimum value of y for f(x,y)
 %
 % Assignment 6, Task 2
 % Group 9: Kelsey Banasik, Zarah Navarro, Harland Ashby, Sonia Sanchez
 %
 
-%% Error Input and Output Checking
+%% Error Input Checking
 
-
+if isscalar(x) == 0
+    error('Please input a scalar value for x');
+elseif isscalar(y) == 0
+    error('Please input a scalar value for y');
+end
 
 %% Initializing Values
-TolX = 0.001;
-h = 0.2;
+TolX = 0.001;      % Halting Error
+h = 0.2;           % Step Size
+deltaX = 0;        % Error
 
-%% Hessian Matrix
-X=x;
-Y=y;
-syms x y
+%% Newton Method Loop
 
-equ1 = diff(diff(f,x));
-equ2 = diff(diff(f,y),x);
-equ3 = diff(diff(f,x),y);
-equ4 = diff(diff(f,y));
+% Step Sizes for x and y
+dx = h;
+dy = h;
 
-eq1 = subs(equ1,[x,y],[X,Y]);
-eq2 = subs(equ2,[x,y],[X,Y]);
-eq3 = subs(equ3,[x,y],[X,Y]);
-eq4 = subs(equ4,[x,y],[X,Y]);
+while deltaX < TolX
 
-H = [eq1, eq2; eq3, eq4];
+% Hessian Matrix
+d2fdx2 = (f(x+dx,y) - 2*f(x,y) + f(x-dx,y))/(dx^2);
+d2fdxdy = (f(x+dx,y+dy) - f(x+dx,y-dy) - f(x-dx,y+dy) + f(x-dx,y-dy))/(4*dx*dy);
+d2fdydx = (f(x+dx,y+dy) - f(x+dx,y-dy) - f(x-dx,y+dy) + f(x-dx,y-dy))/(4*dx*dy);
+d2fdy2 = (f(x,y+dy) - 2*f(x,y) + f(x,y-dy))/(dy^2);
 
-%% Gradient of f(x,y)
+H = [d2fdx2, d2fdxdy; d2fdydx, d2fdy2];
 
-gx = diff(f,x);
-gy = diff(f,y);
+% Gradient of f(x,y)
+dfdx = (f(x+dx,y) - f(x-dx,y))/(2*dx);
+dfdy = (f(x,y+dy) - f(x,y-dy))/(2*dy);
 
-g1 = subs(gx,[x,y],[X,Y]);
-g2 = subs(gy,[x,y],[X,Y]);
+G = [dfdx ; dfdy];
 
-G = [g1 ; g2];
+% Newtonian Direction
+D = H\G;
 
+% Previous x and y values
+xx = x;
+yy = y;
+old = sqrt((xx^2)+(yy^2));
 
+% New x and y values
+x = xx - D(1);
+y = yy - D(2);
+new = sqrt((x^2)+(y^2));
 
+% Halting criteria determination
+deltaX = abs(new - old);
 
+end
 
+%% Optimum Values
 
-
-
-
+x_opt = x;
+y_opt = y;
 
 end
 
