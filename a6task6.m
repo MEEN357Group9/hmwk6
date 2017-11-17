@@ -23,9 +23,12 @@ t = 0:hr:5;
 
 for i = 1:nr-1
     yeah = ode_Kutta(Kutta,f,hr,t(i+1),Ys);
-    Ys = yeah;
     
-    XRKr(i+1) = yeah(1);
+    Ys = yeah; % assigns the new values to be used in the next run
+    
+    % since X matrix already has initial conditions, then the new value
+    % needs to be placed in the next value for the matrix. 
+    XRKr(i+1) = yeah(1); % assigns from the new values to then plot later 
     YRKr(i+1) = yeah(2);
     ZRKr(i+1) = yeah(3);
 end

@@ -18,9 +18,9 @@ r=160;
 X=y(1);
 Y=y(2);
 Z=y(3); 
-dX=-sigma1*X+sigma1*Y;
-dY=-X*Y+r*X-Y;
-dZ=X*Y-b*Z; 
+dX=-sigma1.*X+sigma1.*Y;
+dY=-X.*Y+r.*X-Y;
+dZ=X.*Y-b.*Z; 
 dydx=[dX;dY;dZ];
 end
 
